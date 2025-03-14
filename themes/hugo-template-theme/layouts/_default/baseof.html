@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  {{ if .IsHome }}
+    <title>TODO</title>
+  {{ else }}
+    <title>TODO</title>
+  {{ end }}
+  <link rel="icon" href="FIXME">
+  <meta name="description" content="TODO" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Canonical Tag -->
+  {{ if .Params.canonical }}
+    <link rel="canonical" href="{{ .Params.canonical }}">
+  {{ else }}
+    <link rel="canonical" href="{{ .Permalink }}">
+  {{ end }}
+
+  <!-- Facebook Open Graph Tags -->
+  <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+  <meta property="og:title" content="{{ .Title }}">
+  <meta property="og:description" content="TODO">
+  <meta property="og:url" content="TODO">
+  <meta property="og:image" content="TODO">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:title" content="{{ .Title }}">
+  <meta name="twitter:description" content="TODO">
+  <meta name="twitter:image" content="TODO">
+  <meta name="twitter:card" content="TODO">
+  <meta name="twitter:site" content="TODO">
+
+  {{/* Hugo Pipes: Load, merge, minify, and fingerprint CSS files from assets/css/ */}}
+  {{ $cssFiles := slice
+    (resources.Get "css/global.css")
+    (resources.Get "css/main.css")
+    (resources.Get "css/footer.css")
+  }}
+  {{ $bundle := $cssFiles | resources.Concat "css/bundle.css" | resources.Minify | resources.Fingerprint }}
+  <link rel="stylesheet" href="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}">
+
+  {{ block "head" . }}{{ end }}
+</head>
+<body>
+  <!-- Hidden Skip Links -->
+  <a href="#main-nav" class="skip-link sr-only">Skip to navigation</a>
+  <a href="#main" class="skip-link sr-only">Skip to main content</a>
+  <a href="#footer" class="skip-link sr-only">Skip to footer</a>
+
+  {{ partial "header.html" . }}
+
+  {{ block "main" . }}
+  <!-- Add an id on main to allow skip-link to jump here -->
+  <main id="main">
+    {{ .Content }}
+  </main>
+  {{ end }}
+
+  {{ partial "footer.html" . }}
+
+</body>
+</html>

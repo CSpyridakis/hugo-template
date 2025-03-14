@@ -1,0 +1,13 @@
+contact:
+  first_name: "John"
+  last_name: "Doe"
+  social_linkedin: "https://www.linkedin.com/in/profile/"
+  social_facebook: "https://www.facebook.com/profile/"
+  social_instagram: "https://www.instagram.com/profile/"
+  social_github: "https://github.com/profile"
+  social_x: "https://x.com/profile"
+  social_email: "profile@local.com"
+  photo: "/img/contacts/profile.webp"
+  bio: ""
+  bio_long: |
+   

@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if [ -f /.dockerenv ]; then
+  echo "You are already inside docker..."
+else
+  HUGO_IMG="hugo-template/hugo"
+
+  docker build -t ${HUGO_IMG}:latest -f hugo.Dockerfile . 
+
+  docker run --rm -it \
+    -v $(pwd):/home/app \
+    --net host \
+    -u $(id -u):$(id -g) \
+    ${HUGO_IMG}:latest \
+    sh
+fi

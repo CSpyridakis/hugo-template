@@ -1,0 +1,5 @@
+.hugo_build.lock
+public/
+llm-input.txt
+dm/
+.DS_STORE

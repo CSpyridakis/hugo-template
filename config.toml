@@ -1,0 +1,4 @@
+baseURL = "https://hugo-template.com/"
+languageCode = "en"
+title = "Hugo Template"
+theme = "hugo-template-theme"
